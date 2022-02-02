@@ -56,9 +56,9 @@ class RangeValidator {
     return value > 0 && value < 100;
   }
 
-  // get range(args) {
-  //   return [...args];
-  // }
+  get range() {
+    return Object.values(this);
+  }
 
   set from(value) {
     if (typeof value !== "number") {
@@ -92,12 +92,12 @@ class RangeValidator {
     return this._to;
   }
 }
-
 try {
   const range1 = new RangeValidator(5, 10);
   console.log("range1 :>> ", range1);
   console.log(range1.validate(-55));
   console.log(range1.validate(55));
+  console.log(range1.range);
 } catch (err) {
   if (err instanceof TypeError) {
     console.log("TypeError :>> Argument must be number type");
