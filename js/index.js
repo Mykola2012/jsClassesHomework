@@ -3,7 +3,7 @@
 console.group("Task 1");
 
 class MyArray {
-  getArgs() {
+  constructor() {
     this.length = 0;
     for (let i = 0; i < arguments.length; i++) {
       this[i] = arguments[i];
@@ -33,9 +33,8 @@ class MyArray {
   }
 }
 
-const number = new MyArray();
+const number = new MyArray(4, 5, 6);
 
-number.getArgs(4, 5, 6);
 console.log("number :>> ", number);
 number.push(9);
 console.log("number :>> ", number);
@@ -65,7 +64,12 @@ class RangeValidator {
       throw new TypeError();
     }
 
-    if (value < 0 || value > 100) {
+    if (
+      value > this.to ||
+      value < 0 ||
+      value > 100 ||
+      value === Number.isNaN(value)
+    ) {
       throw new RangeError();
     }
 
@@ -81,7 +85,12 @@ class RangeValidator {
       throw new TypeError();
     }
 
-    if (value < this.from || value < 0 || value > 100) {
+    if (
+      value < this.from ||
+      value < 0 ||
+      value > 100 ||
+      value === Number.isNaN(value)
+    ) {
       throw new RangeError();
     }
 
