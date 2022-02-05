@@ -52,6 +52,9 @@ class RangeValidator {
   }
 
   validate(value) {
+    if (typeof value !== "number" || Number.isNaN(value)) {
+      return false;
+    }
     return value > 0 && value < 100;
   }
 
@@ -65,10 +68,11 @@ class RangeValidator {
     }
 
     if (
+      "_value" in this ||
       value > this.to ||
       value < 0 ||
       value > 100 ||
-      value === Number.isNaN(value)
+      Number.isNaN(value)
     ) {
       throw new RangeError();
     }
@@ -85,12 +89,7 @@ class RangeValidator {
       throw new TypeError();
     }
 
-    if (
-      value < this.from ||
-      value < 0 ||
-      value > 100 ||
-      value === Number.isNaN(value)
-    ) {
+    if (value < this.from || value < 0 || value > 100 || Number.isNaN(value)) {
       throw new RangeError();
     }
 
