@@ -68,7 +68,7 @@ class RangeValidator {
     }
 
     if (
-      "_value" in this ||
+      "_to" in this ||
       value > this.to ||
       value < 0 ||
       value > 100 ||
